@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel='stylesheet'href='style.css'>
+<head>
+    <meta charset="UTF-8">
+    <title>Etch-A-Sketch</title>
+</head>
+<body>
+<button ='button'>Reset Me</button>
+<div id='container'>
+
+</div>
+
+<script>
+
+    function drawGrid(number) {
+        for (let i = 0; i < number * number; i++) {
+            let newDiv = document.createElement('div');
+            newDiv.classList.add('square');
+            container.appendChild(newDiv);
+
+            let allSquares = document.querySelectorAll('.square');
+            allSquares.forEach(square => {
+                square.addEventListener('mouseover', function(event) {
+                event.target.style.background = '#ff4468';
+            });
+        });
+        }
+    }
+    document.querySelector('button').addEventListener('click', function() {
+    let userAmount = prompt('Enter a number');
+    let amountNumber = userAmount*1;
+        document.body.style.setProperty('--columnNumber', amountNumber);
+        deleteGrid();
+        drawGrid(amountNumber);
+    }
+);
+
+function deleteGrid() {
+    let container = document.getElementById('container');
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
+};
+
+
+    drawGrid(16);
+
+</script>
+</body>
+</html>
